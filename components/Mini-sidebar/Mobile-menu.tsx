@@ -20,7 +20,7 @@ const MobileMenu = ({ onSelectCategory }: Props) => {
     };
 
   return (
-    <div className="flex md:hidden h-auto border-r relative z-50">
+    <div className="flex md:hidden h-auto border-r relative z-20">
       <div className="sticky top-4">
           <div onClick={handleClick}>
             <input

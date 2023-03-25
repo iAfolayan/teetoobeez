@@ -19,8 +19,8 @@ const Navbar = () => {
   }
   return (
     <>
-      <div className="flex justify-between items-center sticky top-0 bg-white z-20 shadow mt-0">
-        <div className="flex justify-between items-center bg-white w-full bg-white md:w-11/12 md:mx-auto">
+      <div className="flex justify-between items-center sticky top-0 bg-white z-30 shadow mt-0">
+        <div className="px-2 md:px-0 flex justify-between items-center bg-white w-full bg-white md:w-11/12 md:mx-auto">
           <div className="flex space-x-1 items-center">
             {NavMenu(pathname, "Home", "/")}
             {/* {NavMenu(pathname, "Products", "/products") */}
@@ -31,7 +31,7 @@ const Navbar = () => {
             <span className="bg-[#fca412] text-white font-bold flex p-2 justify-center rounded-full w-10 h-10">
               T
             </span>
-            <span className="font-bold text-2xl">Teetoobeez</span>
+            <span className="hidden md:block font-bold text-2xl">Teetoobeez</span>
           </div>
           <div className="flex space-x-3">
             <Link

@@ -19,7 +19,7 @@ const Layout: React.FC<IProp> = ({ children }) => {
         replyTimeText="Always at your service 24/7"
       /> */}
       <FloatingWhatsApp
-        phoneNumber="2348030614003"
+        phoneNumber="2347033010687"
         accountName="Teetoobeez"
         allowEsc
         allowClickAway

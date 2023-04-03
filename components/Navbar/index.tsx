@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { HiOutlineShoppingCart, HiOutlineUser, HiHome } from "react-icons/hi";
 import { TbSearch } from 'react-icons/tb';
+import Image from 'next/image';
 
 const Navbar = () => {
   const router = useRouter()
@@ -22,14 +23,14 @@ const Navbar = () => {
       <div className="flex justify-between items-center sticky top-0 bg-white z-30 shadow mt-0">
         <div className="px-2 md:px-0 flex justify-between items-center bg-white w-full bg-white md:w-11/12 md:mx-auto">
           <div className="flex space-x-1 items-center">
-            {NavMenu(pathname, "Home", "/")}
+            {NavMenu(pathname, 'Home', '/')}
             {/* {NavMenu(pathname, "Products", "/products") */}
             {/* {NavMenu(pathname, "Discover", "/discover")}
             {NavMenu(pathname, "Shop", "/shop")} */}
           </div>
           <div className="flex gap-x-2 items-center py-3">
-            <span className="bg-[#fca412] text-white font-bold flex p-2 justify-center rounded-full w-10 h-10">
-              T
+            <span className="bg-[#241f1f] text-white font-bold flex p-2 justify-center rounded-full w-10 h-10 object-contain overflow-hidden">
+              <Image src="/Tee-Logo.jpg" width={70} height={70} alt="logo" />
             </span>
             <span className="hidden md:block font-bold text-2xl">Teetoobeez</span>
           </div>
@@ -68,7 +69,7 @@ const Navbar = () => {
         </div>
       )}
     </>
-  );
+  )
 }
 
 export default Navbar

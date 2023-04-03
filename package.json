@@ -23,12 +23,27 @@
     "react-icons": "^4.8.0",
     "react-select": "^5.7.2",
     "react-whatsapp-widget": "^2.2.0",
-    "typescript": "5.0.2"
+    "typescript": "5.0.2",
+    "@portabletext/react": "^2.0.2",
+    "@sanity/image-url": "^1.0.2",
+    "@sanity/vision": "^3.0.0",
+    "next-sanity": "^4.1.6",
+    "react-is": "^18.2.0",
+    "sanity": "^3.0.0",
+    "styled-components": "^5.2.0"
   },
   "devDependencies": {
+    "@sanity/eslint-config-studio": "^2.0.1",
     "@types/currency-formatter": "^1.5.1",
+    "@types/styled-components": "^5.1.26",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.7"
+  },
+   "prettier": {
+    "semi": false,
+    "printWidth": 100,
+    "bracketSpacing": false,
+    "singleQuote": true
   }
 }

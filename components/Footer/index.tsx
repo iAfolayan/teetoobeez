@@ -1,12 +1,10 @@
-import React from 'react'
-
 import { HiHome } from 'react-icons/hi'
 import { BsFacebook, BsInstagram, BsWhatsapp } from "react-icons/bs";
 import Image from 'next/image';
 
 const Footer = () => {
   return (
-    <div className="border-t py-4 flex justify-between items-center bg-black text-white">
+    <div className="border-t py-3 flex justify-between items-center bg-black text-white">
       <div className="flex justify-between items-center px-4 w-11/12 mx-auto">
         <HiHome />
         <div className="flex gap-x-2 items-center py-3">

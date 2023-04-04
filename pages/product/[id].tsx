@@ -6,73 +6,77 @@ import Image from 'next/image'
 import StarRating from '@/components/Rating';
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { CurrencyFormat } from "@/utils/currency";
+import {GetStaticProps, GetStaticPaths} from 'next'
+import { getPostById, urlFor } from '@/utils/sanity';
 
-
-interface Product {
-  id: any;
-  prdImg: string;
-  prdName: string;
-  prdAmount: number;
-  rating: number;
-  stock: boolean;
-  category: string;
+type Product = {
+  _id: string
+  name: string
+  description: string
+  price: number
+  category: {title: string}
+  image: any
+  rating: number
+}
+interface Props {
+  product: Product | null
 }
 
-const ProductDetail = () => {
+const ProductDetail = ({product }: Props) => {
     const router = useRouter()
-    const { id } = router.query
+/*     const [product, setProduct] = useState<Product | []>([])
+ */
+    // const { id } = router.query
 
-  const product: Product | undefined = ProductItems.find(
+ /*  const product: Product | undefined = ProductItems.find(
     (product) => product.id === parseInt(id as string)
-  );
+  ); */
 
-  if (!product) {
+/*   if (!product) {
     return <div className="text-2xl text-red-900 text-center mt-10">Product not found</div>;
+  } */
+
+  if (router.isFallback) {
+    return <div>Loading...</div>;
   }
 
-  /* 
-  89,900
-  323260 (150000) - 177,470
-  8000
-  50000
-  40000
-  365370
-  */
+  if (!product) {
+    return <div>Product not found</div>;
+  }
 
+
+  const { name, _id, price, rating, category} = product
   return (
     <Layout>
       <div className="flex flex-col md:flex-row w-full md:w-9/12 md:mx-auto my-7 items-center gap-x-12">
         <div className="md:w-[450px] mx-auto bg-slate-500 rounded-3xl shadow-md overflow-hidden">
           <Image
-            src={product.prdImg}
-            alt={product.prdName}
+            src={urlFor(product.image[0].asset._ref).url()}
+            alt={name}
             width={250}
             height={340}
+            priority
             className="object-contain w-full shadow"
           />
         </div>
         <div className="flex flex-col shadow p-6 space-y-3 w-11/12 md:w-[400px] text-center md:text-left rounded-md border mx-4 md:mx-0">
           <div className="flex justify-center md:block">
-            <StarRating rating={product.rating} />
+            <StarRating rating={rating} />
           </div>
-          <h1 className="text-5xl font-bold">{product.prdName} </h1>
-          <span className="text-base text-red-500">{product.category}</span>
-          <p className="font-bold text-3xl my-10">
-            {CurrencyFormat(product.prdAmount)}
-          </p>
+          <h1 className="text-5xl font-bold">{name} </h1>
+          <span className="text-base text-red-500">{category.title}</span>
+          <p className="font-bold text-3xl my-10">{CurrencyFormat(price)}</p>
           <div className="flex flex-col space-y-2 mt-5 py-5">
             <p className="text-xl font-bold text-red-900">Order via:</p>
             <div
               className="flex p-4 cursor-pointer rounded-full items-center bg-[#25d366] border gap-x-2 justify-center hover:text-white text-xl font-bold"
-              onClick={() =>
-                router.push("https://api.whatsapp.com/send?phone=2347033010687")
-              }
+              onClick={() => router.push('https://api.whatsapp.com/send?phone=2347033010687')}
             >
               <FaWhatsapp /> <span>WhatsApp</span>
             </div>
             <div
               className="flex p-4 cursor-pointer rounded-full items-center bg-[#c32aa3] border gap-x-2 justify-center hover:text-white text-xl font-bold"
-              onClick={() => router.push("https://instagram.com/teetoobeez")}
+              onClick={() => router.push('https://instagram.com/teetoobeez')}
             >
               <FaInstagram /> <span>Instagram</span>
             </div>
@@ -80,7 +84,26 @@ const ProductDetail = () => {
         </div>
       </div>
     </Layout>
-  );
+  )
 }
+
+export const getStaticProps: GetStaticProps<Props> = async ({params}) => {
+  const id = params?.id as string
+  const product = await getPostById({id})
+
+  return {
+    props: {product},
+    revalidate: 1, // Set this to a higher value if you don't need to update the data frequently
+  }
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  // You can pre-generate the paths for all the posts in your dataset here
+  // Or use fallback: 'blocking' to generate the paths on demand
+  return {
+    paths: [],
+    fallback: 'blocking',
+  };
+};
 
 export default ProductDetail

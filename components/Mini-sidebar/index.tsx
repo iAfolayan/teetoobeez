@@ -4,9 +4,10 @@ const Categories = ["ANKLET (Leg Chain)","Earrings", "Bangles", "Necklaces"];
 
 interface Props {
   onSelectCategory: (category: string | null) => void;
+  navItems: any
 }
 
-const MiniSideBar = ({ onSelectCategory }: Props) => {
+const MiniSideBar = ({ onSelectCategory, navItems }: Props) => {
    const handleSelectCategory = (category: string | null) => {
     onSelectCategory(category);
   };
@@ -20,9 +21,9 @@ const MiniSideBar = ({ onSelectCategory }: Props) => {
       >
         All Products
       </button>
-        {Categories.map(cat => (
-          <div className="flex flex-col border-b last:border-none border-[#f1f1f1] hover:bg-gray-200 cursor-pointer" key={cat}>
-            <p className="p-2 text-xs text-gray-500" onClick={() => handleSelectCategory(cat)}>{cat}</p>
+        {navItems.categories.map((cat:any) => (
+          <div className="flex flex-col border-b last:border-none border-[#f1f1f1] hover:bg-gray-200 cursor-pointer" key={cat._id}>
+            <p className="p-2 text-xs text-gray-500" onClick={() => handleSelectCategory(cat.title)}>{cat.title}</p>
           </div>
         ))}
       </div>

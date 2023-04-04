@@ -21,7 +21,7 @@ const MiniSideBar = ({ onSelectCategory, navItems }: Props) => {
       >
         All Products
       </button>
-        {navItems.categories.map(cat => (
+        {navItems.categories.map((cat:any) => (
           <div className="flex flex-col border-b last:border-none border-[#f1f1f1] hover:bg-gray-200 cursor-pointer" key={cat._id}>
             <p className="p-2 text-xs text-gray-500" onClick={() => handleSelectCategory(cat.title)}>{cat.title}</p>
           </div>

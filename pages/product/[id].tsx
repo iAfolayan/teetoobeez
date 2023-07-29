@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Layout from '@/components/Layout'
 import { useRouter } from 'next/router'
-import { ProductItems } from "@/utils/data";
+// import { ProductItems } from "@/utils/data";
 import Image from 'next/image'
 import StarRating from '@/components/Rating';
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
@@ -37,19 +37,19 @@ const ProductDetail = ({product }: Props) => {
   } */
 
   if (router.isFallback) {
-    return <div>Loading...</div>;
+    return <div className='h-screen flex justify-center items-center'>Loading...</div>;
   }
 
   if (!product) {
-    return <div>Product not found</div>;
+    return <div className='h-screen flex justify-center items-center'>Product not found</div>;
   }
 
-
   const { name, _id, price, rating, category} = product
+
   return (
     <Layout>
-      <div className="flex flex-col md:flex-row w-full md:w-9/12 md:mx-auto my-7 items-center gap-x-12">
-        <div className="md:w-[450px] mx-auto bg-slate-500 rounded-3xl shadow-md overflow-hidden">
+      <div className="flex flex-col md:flex-row w-full md:w-7/12 md:mx-auto my-7 items-center gap-x-16">
+        <div className="md:w-[450px] mx-auto bg-slate-500 rounded-xl shadow-2xl overflow-hidden">
           <Image
             src={urlFor(product.image[0].asset._ref).url()}
             alt={name}
@@ -59,7 +59,7 @@ const ProductDetail = ({product }: Props) => {
             className="object-contain w-full shadow"
           />
         </div>
-        <div className="flex flex-col shadow p-6 space-y-3 w-11/12 md:w-[400px] text-center md:text-left rounded-md border mx-4 md:mx-0">
+        <div className="flex flex-col shadow p-6 space-y-3 w-11/12 md:w-[400px] text-center md:text-left rounded-md border mt-4 md:mt-0 mx-4 md:mx-0">
           <div className="flex justify-center md:block">
             <StarRating rating={rating} />
           </div>
@@ -72,13 +72,15 @@ const ProductDetail = ({product }: Props) => {
               className="flex p-4 cursor-pointer rounded-full items-center bg-[#25d366] border gap-x-2 justify-center hover:text-white text-xl font-bold"
               onClick={() => router.push('https://api.whatsapp.com/send?phone=2347033010687')}
             >
-              <FaWhatsapp /> <span>WhatsApp</span>
+              <FaWhatsapp /> 
+              <span>WhatsApp</span>
             </div>
             <div
               className="flex p-4 cursor-pointer rounded-full items-center bg-[#c32aa3] border gap-x-2 justify-center hover:text-white text-xl font-bold"
               onClick={() => router.push('https://instagram.com/teetoobeez')}
             >
-              <FaInstagram /> <span>Instagram</span>
+              <FaInstagram /> 
+              <span>Instagram</span>
             </div>
           </div>
         </div>

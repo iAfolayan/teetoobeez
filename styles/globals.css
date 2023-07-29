@@ -4,6 +4,9 @@
 
 .hero-section {
   background: url("/hero-img.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 ._1qse9, ._2qp0Z {

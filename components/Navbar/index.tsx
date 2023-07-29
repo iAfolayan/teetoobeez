@@ -14,7 +14,9 @@ const Navbar = () => {
   const pathname = router.pathname;
 
   const NavMenu = (pathname: string, name: string, link: string) => {
-    return (<Link href={link} className={`flex items-center gap-x-2 w-fit py-1 px-2 ${pathname === link && "bg-[#fca412] text-white transition ease-in-out" } hover:bg-[#fca412] hover:text-white rounded-md`}>
+    return (
+    <Link href={link} 
+      className={`flex items-center gap-x-2 w-fit py-1 px-2 ${pathname === link && "bg-[#fca412] text-white transition ease-in-out" } hover:bg-[#fca412] hover:text-white rounded-md`}>
         <HiHome />{name}
     </Link>)
   }
@@ -22,22 +24,22 @@ const Navbar = () => {
     <>
       <div className="flex justify-between items-center sticky top-0 bg-white z-30 shadow mt-0">
         <div className="px-2 md:px-0 flex justify-between items-center bg-white w-full bg-white md:w-11/12 md:mx-auto">
-          <div className="flex space-x-1 items-center">
+            <div className="flex gap-x-2 items-center py-1">
+              <span className="bg-[#241f1f] text-white font-bold flex p-2 justify-center rounded-full w-10 h-10 object-contain overflow-hidden">
+                <Image src="/Tee-Logo.jpg" width={50} height={50} alt="logo" />
+              </span>
+              <span className="hidden md:block font-bold text-xl">Teetoobeez</span>
+            </div>
+          <div className="flex space-x-1 items-center cursor-pointer">
             {NavMenu(pathname, 'Home', '/')}
             {/* {NavMenu(pathname, "Products", "/products") */}
             {/* {NavMenu(pathname, "Discover", "/discover")}
             {NavMenu(pathname, "Shop", "/shop")} */}
           </div>
-          <div className="flex gap-x-2 items-center py-3">
-            <span className="bg-[#241f1f] text-white font-bold flex p-2 justify-center rounded-full w-10 h-10 object-contain overflow-hidden">
-              <Image src="/Tee-Logo.jpg" width={70} height={70} alt="logo" />
-            </span>
-            <span className="hidden md:block font-bold text-2xl">Teetoobeez</span>
-          </div>
-          <div className="flex space-x-3">
+          <div className="hidden flex space-x-3">
             <Link
               href="/"
-              className="flex gap-x-2 items-center text-sm p-2 w-8 h-8 rounded-full bg-yellow-50 hover:bg-[#fca412]"
+              className="flex gap-x-2 items-center text-xs p-2 w-8 h-8 rounded-full bg-yellow-50 hover:bg-[#fca412]"
             >
               <TbSearch />
             </Link>

@@ -23,15 +23,15 @@ const PostCard: React.FC<IProp> = ({ product }) => {
   )} interesting and I am interested`);
   return (
     <div
-      className="transition-all group duration-300h-auto w-full md:w-[220px] md:h-auto border rounded-md hover:shadow flex flex-col overflow-hidden my-4 ease-in-out relative"
+      className="transition-all group duration-300 h-52 w-[185px] md:w-[220px] md:h-[250px] border rounded-md hover:shadow flex flex-col overflow-hidden my-4 ease-in-out relative transition duration-300 transform group-hover:scale-105 ease-in-out group-hover:cursor-pointer bg-slate-400"
       title={name}
+      onClick={() => router.push(`/product/${_id}`)}
     >
       <Image
         src={urlFor(product.image[0].asset._ref).url()}
         alt={name}
-        className="transition duration-300 transform group-hover:scale-105 ease-in-out group-hover:cursor-pointer h-fit object-contain"
-        width="220"
-        height="300"
+        className="h-1/2 transform hover:scale-105 cursor-pointer transition-transform duration-300 w-full object-cover"
+        fill
       />
       <div className="absolute top-1 right-1 hidden group-hover:flex justify-center items-center flex-col space-y-2">
         <Link

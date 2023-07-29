@@ -15,7 +15,7 @@ import FirstPageIcon from '@/icons/first-page-icon';
 interface Category {
   _id: string
   title: string
-}[]
+}
 
 interface Product {
   _id: string
@@ -28,7 +28,7 @@ interface Product {
   author: {
     name: string
   }
-}[]
+}
 
 interface HomeProps {
   categories: Category[]
@@ -37,7 +37,7 @@ interface HomeProps {
 
 const ITEMS_PER_PAGE = 12
 
-const ProductsPage:React.FC<HomeProps> = () => {
+const ProductsPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [categories, setCategories] = useState<Category[]>([])
   const [products, setProducts] = useState<Product[]>([])

@@ -12,12 +12,6 @@ interface IProp {
 const Layout: React.FC<IProp> = ({ children }) => {
   return (
     <div className="relative">
-      {/* <WhatsAppButton phoneNumber={"2348032167911"} message="Hey! Good day" /> */}
-      {/* <WhatsAppWidget
-        phoneNumber="2348030614003"
-        companyName="Teetoobeez"
-        replyTimeText="Always at your service 24/7"
-      /> */}
       <FloatingWhatsApp
         phoneNumber="2347033010687"
         accountName="Teetoobeez"

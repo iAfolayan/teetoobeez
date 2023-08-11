@@ -14,7 +14,7 @@ interface Product {
 interface MenuProp {
   text: string
   link: string
-  Icon: JSX.Element
+  Icon?: JSX.Element
 }
 
 export const MenuItems: MenuProp[] = [
@@ -24,9 +24,16 @@ export const MenuItems: MenuProp[] = [
     Icon: <HiHome />,
   },
   {
-    text: 'About Us',
+    text: 'About',
     link: '/about',
-    Icon: <HiBriefcase />,
+  },
+  {
+    text: 'Products',
+    link: '/products',
+  },
+  {
+    text: 'Services',
+    link: '/services',
   },
  /*  {
     text: 'Shops',
@@ -280,4 +287,46 @@ export const AboutList = [
       }
     ],
   },
+]
+
+export const OurServices = [
+  {
+    title: "Limited Diversity:", 
+    desc: "The market lacks a wide range of diverse and culturally inspired jewelry and fashion options, making it challenging for consumers with unique tastes to find suitable products."
+  },
+  {
+    title: "Lack of access to culturally inspired fashion:",
+    desc: "The existing fashion industry does not cater adequately to the demands of the large immigrant population leaving them unsatisfied and uninspired."
+  },
+  {
+    title: "Stereotyping and misrepresentation:",
+    desc: "Mainstream fashion brands attempting to produce such clothing without a deep understanding of the cultural significance, can lead to stereotyping or appropriation."
+  }
+]
+
+export const SolutionToServices = [
+  {
+    title: "Unique and Urban Designs:",
+    desc: "A wide range of culturally inspired apparel and jewelry designs, incorporating cultural elements to appeal to a diverse customer base."
+  },
+  {
+    title: "Establishing Reliable Suppliers:",
+    desc: "We will establish partnerships with trusted suppliers in Africa to ensure the sourcing of authentic African fabrics and customs, enabling consistent product availability."
+  },
+  {
+    title: "Streamlined Supply Chain:",
+    desc: "Teetoobeez will implement an efficient supply chain management system, focusing on inventory management, production optimization, and strategic partnerships with logistics providers to ensure fast and reliable delivery. Please elaborate this and add some more points."
+  },
+  {
+    title: "Customization and Personalization:",
+    desc: "We will offer customization and personalization options for their jewelry, allowing customers to create unique pieces that reflect their individual style and preferences. This can enhance customer satisfaction and differentiate the brand from competitors."
+  },
+  {
+    title: "Ethical Sourcing and Sustainability:",
+    desc: "We prioritize ethical sourcing practices, such as using conflict-free gemstones and environmentally friendly materials. Communicating the brand's commitment to sustainability and ethical values can resonate with conscious consumers and attract a loyal customer base."
+  },
+  {
+    title: "Bridging Traditional and Contemporary:",
+    desc: " Teetoobeez excels at blending traditional aesthetics with contemporary design elements. This USP appeals to customers seeking fashionable accessories that pay homage to their cultural roots while embracing modern trends. Teetoobeez offers a harmonious fusion of the past and present in its product range."
+  }
 ]

@@ -23,7 +23,7 @@ const PostCard: React.FC<IProp> = ({ product }) => {
   )} interesting and I am interested`);
   return (
     <div
-      className="transition-all group duration-300 h-52 w-[185px] md:w-[220px] md:h-[250px] border rounded-md hover:shadow flex flex-col overflow-hidden my-4 ease-in-out relative transition duration-300 transform group-hover:scale-105 ease-in-out group-hover:cursor-pointer bg-slate-400"
+      className="transition-all group duration-300 h-52 w-[185px] md:w-[220px] md:h-[250px] border rounded-md hover:shadow flex flex-col overflow-hidden my-4 ease-in-out relative transition duration-300 transform group-hover:scale-105 ease-in-out group-hover:cursor-pointer bg-slate-400" data-aos="fade-up"
       title={name}
       onClick={() => router.push(`/product/${_id}`)}
     >
@@ -56,14 +56,14 @@ const PostCard: React.FC<IProp> = ({ product }) => {
         <StarRating rating={rating} />
         <h3 className="text-base">{name}</h3>
       </div>
-      <div className="group-hover:flex justify-between bg-white border transition-all duration-300 ease-in-out items-center my-2 hidden absolute bottom-3 right-0 px-3 rounded-l-full">
+      <div className="group-hover:flex justify-between bg-white border transition-all duration-300 ease-in-out items-center my-2 hidden absolute bottom-3 right-0 px-3 rounded-l-full" data-aos="fade-right">
         <span
-          className="p-2 w-fit cursor-pointer hover:bg-[#fca412] rounded-full"
+          className="p-2 w-fit cursor-pointer hover:bg-[#fca412]/20 rounded-full"
           onClick={() => router.push(`/product/${_id}`)}
         >
           <GrView />
         </span>
-        <p className="p-2 w-fit cursor-pointer hover:bg-[#fca412] rounded-full">
+        <p className="p-2 w-fit cursor-pointer hover:bg-[#fca412]/20 rounded-full">
           <MdAddShoppingCart />
         </p>
       </div>

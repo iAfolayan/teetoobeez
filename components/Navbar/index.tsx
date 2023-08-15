@@ -27,7 +27,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="sticky top-0 bg-white z-30 shadow">
+      <div className="sticky top-0 bg-white z-30 shadow w-full px-2">
         <div className="container mx-auto p-4 flex justify-between">
           <div className="flex justify-between items-center w-full z-50">
             <Logo />

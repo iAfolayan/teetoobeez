@@ -5,7 +5,7 @@ import Layout from '@/components/Layout'
 const AboutPage = () => {
   return (
     <Layout>
-      <div className="max-w-3xl mx-auto py-4">
+      <div className="max-w-3xl mx-auto py-4 px-2 md:px-0">
         <h1
           className="text-4xl p-2 py-4 uppercase rounded"
           data-aos="fade-down"
@@ -16,7 +16,7 @@ const AboutPage = () => {
           About Us
         </h1>
         <p
-          className="text-justify max-w-2xl mx-auto py-4"
+          className="text-justify max-w-2xl mx-auto py-4 px-2 md:px-0"
           data-aos="fade-right"
           data-aos-duration="500"
           data-aos-offset="300"
@@ -32,7 +32,7 @@ const AboutPage = () => {
           annual revenue of CAD 800,000.
         </p>
         <p
-          className="text-justify max-w-2xl mx-auto py-2"
+          className="text-justify max-w-2xl mx-auto py-2 px-2 md:px-0"
           data-aos="fade-left"
           data-aos-duration="500"
           data-aos-offset="300"
@@ -57,13 +57,7 @@ const AboutPage = () => {
           data-aos-offset="250"
           data-aos-easing="ease-in-sine"
         >
-          <h2
-            className="text-2xl font-bold text-center p-2" data-aos="fade-left"
-          data-aos-duration="500"
-          data-aos-offset="250"
-          data-aos-easing="ease-in-sine">
-            Vision & Mission
-          </h2>
+          
           <AboutComponent />
         </div>
       </div>

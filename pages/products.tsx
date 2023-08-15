@@ -6,7 +6,7 @@ import List from '@/components/About/List'
 const Products = () => {
   return (
     <Layout>
-      <div className="mb-4">
+      <div className="mb-4 px-2 md:px-0">
         {/* <div className="w-7/12 mx-auto h-44 bg-gray-700">
           <Image src="/display.png" fill className="object-contain" alt="Product display" />
         </div> */}

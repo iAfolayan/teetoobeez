@@ -12,3 +12,15 @@
 ._1qse9, ._2qp0Z {
   z-index: 99999 !important;
 }
+
+/* .transform {
+  transform: translate3d(0, 0, 0);
+}
+
+.transition-transform {
+  transition-property: transform;
+}
+
+.ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+} */

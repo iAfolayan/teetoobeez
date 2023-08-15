@@ -20,7 +20,7 @@ export default {
       title: 'Rating',
       type: 'number',
       options: {
-        maxLength: 5
+        maxLength: 5,
       },
       validation: (Rule) => Rule.required(),
     },
@@ -62,5 +62,17 @@ export default {
       to: [{type: 'author'}],
       validation: (Rule) => Rule.required(),
     },
+    {
+      name: 'isFeatured',
+      title: 'Featured',
+      type: 'boolean',
+      description: 'Mark this product as featured',
+    },
+    {
+      name: 'isLatest',
+      title: 'Latest',
+      type: 'boolean',
+      description: 'Mark this product as latest',
+    }
   ],
 }

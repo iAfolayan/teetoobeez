@@ -53,9 +53,46 @@ export const getPostById = async ({id}: Props): Promise<Product | null> => {
   }
 }
 
+export const getProductsByCategory = async (id: string): Promise<Product[]> => {
+  try {
+    const productsResult = `*[_type == "product" && category._ref == "${id}"] | order(_createdAt desc) { 
+    _id,
+    name,
+    image,
+    description,
+    price,
+    rating,
+    category->{
+      title
+    },
+    author->{
+      name
+    }
+  }`
+    const results: SanityDocument<Product>[] = await client.fetch(productsResult)
+    return results
+  } catch (error) {
+    console.error(error)
+    return []
+  }
+}
+
 export const getAllProducts = async (): Promise<Product[]> => {
   try {
-    const productsResult = `*[_type == "product"] | order(_createdAt desc) { _id, name, image, description, price, rating, category->{title}, author->{name}}`
+    const productsResult = `*[_type == "product"] | order(_createdAt desc) [0..2] { 
+    _id,
+    name,
+    image,
+    description,
+    price,
+    rating,
+    category->{
+      title
+    },
+    author->{
+      name
+    }
+  }`
     const results: SanityDocument<Product>[] = await client.fetch(productsResult)
     return results
   } catch (error) {
@@ -72,5 +109,30 @@ export const getAllCategories = async (): Promise<Category[]> => {
   } catch (error) {
     console.error(error)
     return []
+  }
+}
+
+export const getFeaturedProduct = async (): Promise<Product | null> => {
+  const query = `*[_type == "product" && isFeatured == true] {
+  _id,
+  name,
+  image,
+  description,
+  category->{
+    _id
+  }
+}`;
+    try {
+    const results: SanityDocument<Product>[] = await client.fetch(query)
+
+    if (results.length === 0) {
+      return null
+    }
+
+    // `results[0]` is the single post object
+    return results[0]
+  } catch (error) {
+    console.error(error)
+    return null
   }
 }

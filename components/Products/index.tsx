@@ -35,7 +35,7 @@ interface HomeProps {
   products: Product[]
 }
 
-const ITEMS_PER_PAGE = 12
+const ITEMS_PER_PAGE = 52
 
 const ProductsPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
@@ -84,9 +84,15 @@ const ProductsPage = () => {
   /* End pagination */
 
   return (
-    <div className="flex gap-x-1 w-full md:w-11/12 mx-auto">
+    <div className="flex gap-x-1 w-full md:w-11/12 px-2 md:px-0 md:mx-auto">
       <MiniSideBar onSelectCategory={handleSelectCategory} navItems={categories} />
       <div className="flex flex-col w-full mt-5 mx-1 md:mx-0 md:ml-12">
+        <h1 className="flex flex-col text-3xl text-gray-600 uppercase text-center py-4">
+          Our Products
+          <span className="text-gray-300 text-xl italic normal-case">
+            Adorning Elegance with our Exquisite Jewelry Collection
+          </span>
+        </h1>
         <div className="flex justify-between items-center py-2 border-b">
           <h1 className="text-base md:text-xl font-bold uppercase w-fit">
             {selectedCategory === null ? 'All products' : selectedCategory}

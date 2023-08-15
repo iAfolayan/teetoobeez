@@ -21,7 +21,6 @@ export const MenuItems: MenuProp[] = [
   {
     text: 'Home',
     link: '/',
-    Icon: <HiHome />,
   },
   {
     text: 'About',

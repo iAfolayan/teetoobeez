@@ -34,6 +34,10 @@ export const MenuItems: MenuProp[] = [
     text: 'Services',
     link: '/services',
   },
+  {
+    text: 'Contact Us',
+    link: '/contact'
+  }
  /*  {
     text: 'Shops',
     link: '/shops',

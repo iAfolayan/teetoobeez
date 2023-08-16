@@ -30,6 +30,7 @@
     "react-icons": "^4.8.0",
     "react-is": "^18.2.0",
     "react-js-pagination": "^3.0.3",
+    "react-responsive-carousel": "^3.2.23",
     "react-select": "^5.7.2",
     "react-whatsapp-widget": "^2.2.0",
     "sanity": "^3.14.4",

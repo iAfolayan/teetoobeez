@@ -12,7 +12,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({imageSrc, title, subtitle, id}) 
   const router = useRouter()
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between h-96 py-4 md:py-10 bg-green-700">
+    <div className="flex flex-col md:flex-row items-center justify-between h-96 py-4 md:py-10 bg-green-300">
       <div className="md:w-1/2 p-1 md:p-8 text-center flex flex-col">
         <h1 className="text-[25px] md:text-6xl font-extrabold md:mb-2 text-white">{title}</h1>
         <p className="text-xl md:text-2xl italic text-center text-white">{subtitle}</p>

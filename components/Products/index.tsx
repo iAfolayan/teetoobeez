@@ -10,6 +10,8 @@ import PrevPageIcon from '@/icons/prev-page-icon';
 import NextPageIcon from '@/icons/next-page-icon';
 import LastPageIcon from '@/icons/last-page-icon';
 import FirstPageIcon from '@/icons/first-page-icon';
+
+import Loader from '@/components/Loader';
 // import 'react-js-pagination/dist/Pagination.css'
 
 interface Category {
@@ -41,9 +43,11 @@ const ProductsPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [categories, setCategories] = useState<Category[]>([])
   const [products, setProducts] = useState<Product[]>([])
+  const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true)
     try{
       const query = `*[_type == "category"]{_id, title }`;
       const productsResult = await client.fetch(`*[_type == "product"] | order(_createdAt desc){ _id, name, image, description, price, rating, category->{title}, author->{name}}`);
@@ -52,8 +56,11 @@ const ProductsPage = () => {
       
       setCategories(categories)
       setProducts(productsResult)
+      setLoading(false)
     } catch(err) {
       console.log(err)
+    } finally {
+      setLoading(false)
     }
   }
    fetchData()
@@ -108,9 +115,9 @@ const ProductsPage = () => {
           ))}
         </div>
         <div className="flex flex-col md:flex-row items-center justify-center space-x-6 my-4">
-          <span className="inline-flex mt-4 text-sm font-normal">
+          {loading ? (<Loader text="Loading All products" />) : (<span className="inline-flex mt-4 text-sm font-normal">
             Total items: {filteredProducts.length}
-          </span>
+          </span>)}
           <Pagination
             activePage={currentPage}
             itemsCountPerPage={ITEMS_PER_PAGE}

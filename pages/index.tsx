@@ -27,50 +27,37 @@ interface Props {
   product: Product
 }
 
-export default function Home() {
-
-/*   const heroProps = {
-    imageSrc: '/Hero.png',
-    title: "Adorn Yourself with Exquisite Jewelry Creations",
-    subtitle: 'Find Your Perfect Piece of Jewelry Today!',
-    id: '',
-  } */
- /*  const heroProps = {
-    imageSrc: urlFor(product.image[0].asset._ref).url(),
-    title: product?.name,
-    subtitle: product?.description || 'Adorn Yourself with Exquisite Jewelry Creations',
-    id: product?.category?._id || '',
-  } */
+const Home = () => {
 
  const slides = [
   {
     title: 'Exquisite Jewelry Collection',
     image: '/hero-banner.jpg',
-    link: '/jewelry',
+    link: '/Ankara',
     message: 'Discover a stunning collection of handcrafted jewelry pieces that reflect elegance and sophistication.',
   },
   {
     title: 'Elegant Accessories',
     image: '/1.jpg',
-    link: '/accessories',
+    link: '/Necklaces',
     message: 'Complete your look with our exquisite range of accessories, designed to complement your style with finesse.',
   },
   {
     title: 'Timeless Beauty',
     image: '/products/LUXE_08.png',
-    link: '/timeless-beauty',
+    link: '/Earrings',
     message: 'Experience the allure of timeless beauty with our selection of jewelry that transcends trends and eras.',
   },
   {
     title: 'Captivating Designs',
     image: '/products/LUXE_12.JPG',
-    link: '/captivating-designs',
+    link: '/Bangles',
     message: 'Fall in love with our captivating designs that capture the essence of artistry and individuality.',
   },
   {
     title: 'Luxury Redefined',
     image: '/Hero.png',
-    link: '/luxury',
+    link: '/Men',
     message: 'Experience luxury redefined with our collection of meticulously crafted jewelry pieces for the discerning taste.',
   },
 ];
@@ -95,6 +82,9 @@ export default function Home() {
     /* IUC 7038708688(0) */
   )
 }
+
+export default Home
+
 /* 
 export const getStaticProps = async () => {
   const product = await getFeaturedProduct()

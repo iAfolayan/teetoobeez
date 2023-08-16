@@ -28,12 +28,12 @@ const Navbar = () => {
   return (
     <>
       <div className="sticky top-0 bg-white z-30 shadow w-full px-2">
-        <div className="container mx-auto p-4 flex justify-between">
-          <div className="flex justify-between items-center w-full z-50">
+        <div className="container mx-auto p-2 flex justify-between">
+          <div className="flex justify-between items-center w-full md:w-0 z-50">
             <Logo />
             <HamburgerIcon onToggle={toggleMenu} />
           </div>
-          <div className="hidden md:flex space-x-1 items-center">
+          <div className="hidden md:flex space-x-1 items-center md:flex-1 md:justify-end">
             {MenuItems.map((data: any) => (
               <Menu
                 path={path}

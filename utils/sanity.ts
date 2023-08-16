@@ -53,9 +53,8 @@ export const getPostById = async ({id}: Props): Promise<Product | null> => {
   }
 }
 
-export const getProductsByCategory = async (id: string): Promise<Product[]> => {
-  try {
-    const productsResult = `*[_type == "product" && category._ref == "${id}"] | order(_createdAt desc) { 
+export const getProductsByCategory = async (categoryTitle: string): Promise<Product[]> => {
+  const query = `*[_type == "product" && category->title == "${categoryTitle}"] | order(_createdAt desc) {
     _id,
     name,
     image,
@@ -69,8 +68,10 @@ export const getProductsByCategory = async (id: string): Promise<Product[]> => {
       name
     }
   }`
-    const results: SanityDocument<Product>[] = await client.fetch(productsResult)
-    return results
+
+  try {
+    const products: Product[] = await client.fetch(query)
+    return products
   } catch (error) {
     console.error(error)
     return []

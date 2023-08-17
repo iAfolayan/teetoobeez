@@ -27,11 +27,11 @@ const AboutPage = () => {
           devoted themself solely to fashion design. They started creating unique designs and
           selling them online (through select Social Media platforms and their own website) to
           customers across the globe under the brand name
-          <span className="font-bold pl-1">Teetoobeez</span>. Over the years,
+          {/* <span className="font-bold pl-1">Teetoobeez</span>. Over the years,
           <span className="font-bold pl-1">Teetoobeez</span> has made significant progress growing
-          annual revenue of CAD 800,000.
+          annual revenue of CAD 800,000. */}
         </p>
-        <p
+       {/*  <p
           className="text-justify max-w-2xl mx-auto py-2 px-2 md:px-0"
           data-aos="fade-left"
           data-aos-duration="500"
@@ -44,7 +44,7 @@ const AboutPage = () => {
           opportunities and cultural benefits for citizens of the
           <span className="font-bold pl-1">Windsor region in Ontario province</span> where the
           business will be headquartered
-        </p>
+        </p> */}
         {/* <p className="text-center max-w-2xl mx-auto py-4">
           Teetoobeez offers a diverse range of culturally inspired jewelry, traditional attire, and
           accessories. Here is a properly arranged product overview

@@ -19,10 +19,16 @@ interface Category {
   title: string
 }
 
+interface Image {
+  _ref: string // This should be the Sanity asset reference
+  asset: any
+  // Add other image properties if needed
+}
+
 interface Product {
   _id: string
   name: string
-  image: string
+  image: Image[]
   description: string
   price: number
   rating: number
@@ -50,7 +56,7 @@ const ProductsPage = () => {
       setLoading(true)
     try{
       const query = `*[_type == "category"]{_id, title }`;
-      const productsResult = await client.fetch(`*[_type == "product"] | order(_createdAt desc){ _id, name, image, description, price, rating, category->{title}, author->{name}}`);
+      const productsResult = await client.fetch(`*[_type == "product"] | order(_createdAt desc){ _id, name, image, description, price, rating, category->{title}}`);
       
       const categories = await client.fetch(query)
       

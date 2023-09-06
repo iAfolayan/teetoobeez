@@ -30,37 +30,42 @@ interface Props {
 const Home = () => {
 
  const slides = [
-  {
-    title: 'Exquisite Jewelry Collection',
-    image: '/hero-banner.jpg',
-    link: '/Ankara',
-    message: 'Discover a stunning collection of handcrafted jewelry pieces that reflect elegance and sophistication.',
-  },
-  {
-    title: 'Elegant Accessories',
-    image: '/1.jpg',
-    link: '/Necklaces',
-    message: 'Complete your look with our exquisite range of accessories, designed to complement your style with finesse.',
-  },
-  {
-    title: 'Timeless Beauty',
-    image: '/products/LUXE_08.png',
-    link: '/Earrings',
-    message: 'Experience the allure of timeless beauty with our selection of jewelry that transcends trends and eras.',
-  },
-  {
-    title: 'Captivating Designs',
-    image: '/products/LUXE_12.JPG',
-    link: '/Bangles',
-    message: 'Fall in love with our captivating designs that capture the essence of artistry and individuality.',
-  },
-  {
-    title: 'Luxury Redefined',
-    image: '/Hero.png',
-    link: '/Men',
-    message: 'Experience luxury redefined with our collection of meticulously crafted jewelry pieces for the discerning taste.',
-  },
-];
+   {
+     title: 'Exquisite Jewelry Collection',
+     image: '/hero-banner.jpg',
+     link: '/Ankara fabrics',
+     message:
+       'Discover a stunning collection of handcrafted jewelry pieces that reflect elegance and sophistication.',
+   },
+   {
+     title: 'Elegant Accessories',
+     image: '/1.jpg',
+     link: '/Necklaces',
+     message:
+       'Complete your look with our exquisite range of accessories, designed to complement your style with finesse.',
+   },
+   {
+     title: 'Timeless Beauty',
+     image: '/products/LUXE_08.png',
+     link: '/Earrings',
+     message:
+       'Experience the allure of timeless beauty with our selection of jewelry that transcends trends and eras.',
+   },
+   {
+     title: 'Captivating Designs',
+     image: '/products/LUXE_12.JPG',
+     link: '/Bangles',
+     message:
+       'Fall in love with our captivating designs that capture the essence of artistry and individuality.',
+   },
+   {
+     title: 'Luxury Redefined',
+     image: '/Hero.png',
+     link: '/Men',
+     message:
+       'Experience luxury redefined with our collection of meticulously crafted jewelry pieces for the discerning taste.',
+   },
+ ]
   return (
     <>
       <Head>

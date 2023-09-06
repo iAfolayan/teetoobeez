@@ -55,12 +55,21 @@ const ProductDetail = ({product }: Props) => {
 
   const { name, _id, price, rating, category} = product
 
+  const getImageUrl = (imageRef: string | undefined) => {
+    return urlFor(imageRef);
+  };
+
+  const imageUrl = getImageUrl(product.image?.[0]?.asset?._ref);
+
   return (
     <Layout>
       <div className="flex flex-col md:flex-row w-full md:w-7/12 md:mx-auto my-5 items-center gap-x-16">
-        <div className="md:w-[450px] mx-auto shadow rounded overflow-hidden" data-aos="fade-right">
+        <div
+          className="md:w-[450px] mx-auto shadow rounded-md overflow-hidden"
+          data-aos="fade-right"
+        >
           <Image
-            src={urlFor(product.image[0].asset._ref).url()}
+            src={imageUrl || ""}
             alt={name}
             width={250}
             height={340}
@@ -81,10 +90,7 @@ const ProductDetail = ({product }: Props) => {
           <p className="text-xl font-bold mt-4">{CurrencyFormat(price * quantity)}</p>
           {/* quantity */}
           <p className="text-red-500 py-2">Quantity</p>
-          <QuantityCounter
-            handleQuantityChange={handleQuantityChange}
-            quantity={quantity}
-          />
+          <QuantityCounter handleQuantityChange={handleQuantityChange} quantity={quantity} />
 
           <div className="flex flex-col space-y-4 py-5">
             <p className="font-bold text-red-500">Order via:</p>

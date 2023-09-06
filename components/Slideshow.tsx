@@ -52,6 +52,7 @@ const Slideshow: React.FC<SlideshowProps> = ({slides}) => {
             <Image
               src={slide.image}
               alt={slide.title}
+              priority
               fill
               sizes="true"
               className="object-cover rounded-md"

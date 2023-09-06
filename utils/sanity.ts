@@ -30,8 +30,14 @@ export const client = createClient({
   useCdn: true, // Set this to `true` for production
 })
 
-
-export const urlFor = (source: any) => imageUrlBuilder(client).image(source)
+export const urlFor = (source: any) => {
+  try{
+    const htmlFor = imageUrlBuilder(client).image(source).url()
+    return htmlFor
+  } catch (err) {
+    console.log(err)
+  }
+}
 
 export const getPostById = async ({id}: Props): Promise<Product | null> => {
   const query = `*[ _type == "product" && _id == "${id}" ]{
@@ -80,7 +86,7 @@ export const getProductsByCategory = async (categoryTitle: string): Promise<Prod
 
 export const getAllProducts = async (): Promise<Product[]> => {
   try {
-    const productsResult = `*[_type == "product"] | order(_createdAt desc) [0..2] { 
+    const productsResult = `*[_type == "product"] | order(_createdAt desc) { 
     _id,
     name,
     image,

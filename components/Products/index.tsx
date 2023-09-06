@@ -32,6 +32,7 @@ interface Product {
   description: string
   price: number
   rating: number
+  isLatest: any
   category: Category
   author: {
     name: string
@@ -56,7 +57,7 @@ const ProductsPage = () => {
       setLoading(true)
     try{
       const query = `*[_type == "category"]{_id, title }`;
-      const productsResult = await client.fetch(`*[_type == "product"] | order(_createdAt desc){ _id, name, image, description, price, rating, category->{title}}`);
+      const productsResult = await client.fetch(`*[_type == "product"] | order(_createdAt desc){ _id, name, image, description, price, rating, isLatest, category->{title}}`);
       
       const categories = await client.fetch(query)
       
@@ -80,7 +81,7 @@ const ProductsPage = () => {
   }
 
   const filteredProducts = selectedCategory
-    ? products.filter((product: Product) => product.category.title === selectedCategory)
+    ? products.filter((product: Product) => (product.category.title || product.isLatest) === selectedCategory)
     : products
 
   /* Pagination */
@@ -108,7 +109,11 @@ const ProductsPage = () => {
         </h1>
         <div className="flex justify-between items-center py-2 border-b">
           <h1 className="text-base md:text-xl font-bold uppercase w-fit">
-            {selectedCategory === null ? 'All products' : selectedCategory}
+            {selectedCategory === null
+              ? 'All products'
+              : selectedCategory === "true"
+              ? 'Lastest'
+              : selectedCategory}
           </h1>
           <div className="flex md:gap-x-4">
             <span className="hidden md:block">Sort by: Latest</span>
@@ -121,9 +126,13 @@ const ProductsPage = () => {
           ))}
         </div>
         <div className="flex flex-col md:flex-row items-center justify-center space-x-6 my-4">
-          {loading ? (<Loader text="Loading All products" />) : (<span className="inline-flex mt-4 text-sm font-normal">
-            Total items: {filteredProducts.length}
-          </span>)}
+          {loading ? (
+            <Loader text="Loading All products" />
+          ) : (
+            <span className="inline-flex mt-4 text-sm font-normal">
+              Total items: {filteredProducts.length}
+            </span>
+          )}
           <Pagination
             activePage={currentPage}
             itemsCountPerPage={ITEMS_PER_PAGE}

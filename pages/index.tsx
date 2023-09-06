@@ -33,7 +33,7 @@ const Home = () => {
    {
      title: 'Exquisite Jewelry Collection',
      image: '/hero-banner.jpg',
-     link: '/Ankara fabrics',
+     link: '/Ankara Fabrics',
      message:
        'Discover a stunning collection of handcrafted jewelry pieces that reflect elegance and sophistication.',
    },

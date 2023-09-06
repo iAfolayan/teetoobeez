@@ -11,6 +11,7 @@ const Loader: React.FC<Props> = ({ text }) => {
                 <Image
                     src="/Tee-Logo.jpg"
                     alt="logo"
+                    sizes="true"
                     fill
                     priority
                     className="rounded-full"

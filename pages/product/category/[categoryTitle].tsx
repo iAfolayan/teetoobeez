@@ -49,7 +49,7 @@ const ProductsByCategory = () => {
   const router = useRouter()
   const { categoryTitle } = router.query;
   
-  const formattedCategoryTitle = typeof categoryTitle === 'string' ? capitalizeWord(categoryTitle) : '';
+  const formattedCategoryTitle = typeof categoryTitle === 'string' ? categoryTitle : '';
 
    useEffect(() => {
      const fetchData = async (catTitle: string) => {

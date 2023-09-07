@@ -31,6 +31,12 @@ const MiniSideBar = ({ onSelectCategory, navItems }: Props) => {
   }            </p>
             </div>
           ))}
+         {/*  <button
+          className="mr-2 p-2 rounded-md text-sm my-2 text-white bg-red-500 text-gray-700 mb-5"
+          onClick={() => handleSelectCategory("true")}
+        >
+          New Products
+        </button> */}
       </div>
     </div>
   )

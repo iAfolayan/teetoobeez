@@ -13,9 +13,9 @@ interface IProp {
 }
 const PostCard: React.FC<IProp> = ({ product }) => {
   const router = useRouter()
-  const {_id, name, rating, price, image} = product
+  const {_id, name, rating, price, image, isLatest} = product
 
-
+console.log(product)
   // Create a function to resolve image URLs
   const getImageUrl = (imageRef: string | undefined) => {
     return urlFor(imageRef);
@@ -36,18 +36,20 @@ const PostCard: React.FC<IProp> = ({ product }) => {
   };
 
   return (
-    <div className="m-4">
+    <div className="grid m-1 md:m-4 relative">
       <div
         className="transition-all group duration-300 h-52 w-[170px] border rounded-md hover:shadow flex flex-col overflow-hidden ease-in-out relative transition duration-300 transform group-hover:scale-105 ease-in-out group-hover:cursor-pointer bg-slate-400"
         data-aos="slide-up"
         title={name}
         onClick={handleImageClick}
       >
+          {isLatest && (<div className="absolute -top-2 -right-2 z-20 p-2 w-fit rounded-full bg-red-500 flex justify-center font-normal items-center text-sm text-white">New</div>)}
         {imageUrl !== undefined ? (
           <Image
             src={imageUrl} // Display the first image
             alt={name}
             fill
+            sizes="true"
             className="hover:scale-105 object-cover cursor-pointer transition-transform duration-300"
           />
         ) : (
@@ -55,10 +57,11 @@ const PostCard: React.FC<IProp> = ({ product }) => {
             src="/display.png" // Provide a placeholder image URL or a local image
             alt={name}
             fill
+            sizes="true"
             className="h-1/2 transform hover:scale-105 cursor-pointer transition-transform duration-300 w-full object-cover"
           />
         )}
-        <div className="absolute top-1 right-1 hidden group-hover:flex justify-center items-center flex-col space-y-2">
+        <div className="absolute top-8 right-1 hidden group-hover:flex justify-center items-center flex-col space-y-2">
           <Link
             href="https://instagram.com/teetoobeez"
             target="_blank"

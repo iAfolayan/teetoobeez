@@ -41,7 +41,7 @@ export const urlFor = (source: any) => {
 
 export const getPostById = async ({id}: Props): Promise<Product | null> => {
   const query = `*[ _type == "product" && _id == "${id}" ]{
-    _id, name, category-> {title}, price, image, rating
+    _id, name, category-> {title}, price, image, rating,isLatest
   }`
 
   try {
@@ -67,6 +67,7 @@ export const getProductsByCategory = async (categoryTitle: string): Promise<Prod
     description,
     price,
     rating,
+    isLatest,
     category->{
       title
     },
@@ -93,6 +94,7 @@ export const getAllProducts = async (): Promise<Product[]> => {
     description,
     price,
     rating,
+    isLatest,
     category->{
       title
     },

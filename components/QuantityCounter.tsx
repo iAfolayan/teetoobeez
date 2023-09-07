@@ -8,7 +8,7 @@ const QuantityCounter: React.FC<QuantityCounterProps> = ({
   quantity,
 }) => {
   return (
-    <div className="flex items-center gap-4 w-fit">
+    <div className="flex justify-center md:justify-start items-center gap-4 w-full">
       <button
         className={`flex items-center text-xl shadow px-4 py-1 ${
           quantity === 1 && 'text-gray-200 bg-gray-50 cursor-not-allowed'

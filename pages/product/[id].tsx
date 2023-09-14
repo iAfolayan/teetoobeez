@@ -72,21 +72,41 @@ const ProductDetail = ({product }: Props) => {
    }, [messageWhatsApp])
 
    useEffect(() => {
-   const fetchData = async () => {
-     setLoading(true)
-     try {
-       const moreProductsQuery = await getProductsByCategory(categoryTitles)
-       const randomFiveProducts = moreProductsQuery.sort(() => Math.random() - 0.5).slice(0, 5)
-       setMoreProducts(randomFiveProducts)
-     } catch (err) {
-       console.error(err)
-     } finally {
-       setLoading(false)
-     }
-   }
+     let isMounted = true // A flag to check if the component is still mounted
 
-   fetchData()
-  }, [categoryTitles])
+     const fetchData = async () => {
+       if (!isMounted) {
+         // If the component is unmounted, don't proceed
+         return
+       }
+
+       setLoading(true)
+       try {
+         const moreProductsQuery = await getProductsByCategory(categoryTitles)
+         const randomFiveProducts = moreProductsQuery.sort(() => Math.random() - 0.5).slice(0, 5)
+
+         if (isMounted) {
+           // Only update state if the component is still mounted
+           setMoreProducts(randomFiveProducts)
+         }
+       } catch (err) {
+         console.error(err)
+       } finally {
+         if (isMounted) {
+           // Only set loading to false if the component is still mounted
+           setLoading(false)
+         }
+       }
+     }
+
+     fetchData()
+
+     // Cleanup function to set isMounted to false when component unmounts
+     return () => {
+       isMounted = false
+     }
+   }, [])
+
 
   const handleQuantityChange = (change: number) => {
     const newQuantity = Math.max(1, quantity + change)

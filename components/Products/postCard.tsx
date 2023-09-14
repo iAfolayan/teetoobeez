@@ -15,7 +15,6 @@ const PostCard: React.FC<IProp> = ({ product }) => {
   const router = useRouter()
   const {_id, name, rating, price, image, isLatest} = product
 
-console.log(product)
   // Create a function to resolve image URLs
   const getImageUrl = (imageRef: string | undefined) => {
     return urlFor(imageRef);

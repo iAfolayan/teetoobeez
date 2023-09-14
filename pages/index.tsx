@@ -16,10 +16,7 @@ type Product = {
   name: string
   description: string
   price: number
-  category: {
-    _id: string
-    title: string
-  }
+  category: string[]
   image: any
   rating: number
 }

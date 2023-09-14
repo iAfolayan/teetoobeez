@@ -11,12 +11,18 @@ import { getPostById, getProductsByCategory, urlFor } from '@/utils/sanity';
 import QuantityCounter from '@/components/QuantityCounter';
 import PostCard from '@/components/Products/postCard';
 
+interface Category {
+  [x: string]: any;
+  _id: string
+  title: string
+}
+
 type Product = {
   _id: string
   name: string
   description: string
   price: number
-  category: {title: string}
+  category: Category
   image: any
   rating: number
 }
@@ -37,10 +43,14 @@ const ProductDetail = ({product }: Props) => {
       _id: '',
       price: 0,
       rating: 0,
-      category: {title: ''},
+      category: {
+        title: ''
+      },
     }
 
-    const productTitle = category.title
+    const categoryTitles = Array.isArray(category)
+      ? category.map((cat) => cat.title) // If it's already an array
+      : [category.title]
 
    const messageWhatsApp = encodeURIComponent(
     `Hi, Teetoobeez, I found this product ${name} interesting and I am interested. Check it out: ${process.env.NEXT_PUBLIC_APP_URL}/product/${_id}`
@@ -65,7 +75,7 @@ const ProductDetail = ({product }: Props) => {
    const fetchData = async () => {
      setLoading(true)
      try {
-       const moreProductsQuery = await getProductsByCategory(category.title)
+       const moreProductsQuery = await getProductsByCategory(categoryTitles)
        const randomFiveProducts = moreProductsQuery.sort(() => Math.random() - 0.5).slice(0, 5)
        setMoreProducts(randomFiveProducts)
      } catch (err) {
@@ -76,7 +86,7 @@ const ProductDetail = ({product }: Props) => {
    }
 
    fetchData()
-  }, [category.title])
+  }, [categoryTitles])
 
   const handleQuantityChange = (change: number) => {
     const newQuantity = Math.max(1, quantity + change)
@@ -122,7 +132,20 @@ const ProductDetail = ({product }: Props) => {
           </div>
           <p className="text-xs text-red-500 mt-1">Title</p>
           <h1 className="text-2xl font-bold">{name} </h1>
-          <span className="text-sm text-red-500">{category.title}</span>
+          <span className="flex gap-x-2 text-sm text-red-500">
+            {Array.isArray(category)
+              ? category.map((cat: any, index: number) => (
+                  <span key={index} className="w-fit rounded-md p-1 text-red-500 bg-gray-100">
+                    {cat.title}
+                  </span>
+                ))
+              : [category.title]}
+            {/* {category && category.map((cat: any, index: number) => (
+              <span key={index} className="w-fit rounded-md p-1 text-red-500 bg-gray-100">
+                {cat.title}
+              </span>
+            ))} */}
+          </span>
           <p className="text-xl font-bold mt-4">{CurrencyFormat(price * quantity)}</p>
           {/* quantity */}
           <p className="text-red-500 py-2">Quantity</p>
@@ -150,15 +173,19 @@ const ProductDetail = ({product }: Props) => {
           </div>
         </div>
       </div>
-      <h1 className="font-bold md:text-2xl px-4 w-full md:w-11/12 mx-auto md:mt-8 md:mb-2">More like this: </h1>
-      {loading ? <p className="text-xl text-center my-2">Loading more like products...</p> : (
-      <div className="flex gap-x-1 w-full md:w-10/12 mx-auto flex-col px-2 md:px-0">
-        <div className="grid grid-cols-2 md:flex md:gap-x-[5px] flex-wrap">
-          {moreProducts.map((moreProduct: any, index: any) => (
-            <PostCard product={moreProduct} key={index} />
-          ))}
+      <h1 className="font-bold md:text-2xl px-4 w-full md:w-11/12 mx-auto md:mt-8 md:mb-2">
+        More like this:{' '}
+      </h1>
+      {loading ? (
+        <p className="text-xl text-center my-2">Loading more like products...</p>
+      ) : (
+        <div className="flex gap-x-1 w-full md:w-10/12 mx-auto flex-col px-2 md:px-0">
+          <div className="grid grid-cols-2 md:flex md:gap-x-[5px] flex-wrap">
+            {moreProducts.map((moreProduct: any, index: any) => (
+              <PostCard product={moreProduct} key={index} />
+            ))}
+          </div>
         </div>
-      </div>
       )}
     </Layout>
   )

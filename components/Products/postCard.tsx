@@ -21,7 +21,7 @@ console.log(product)
     return urlFor(imageRef);
   };
 
-  const imageUrl = getImageUrl(product.image[0].asset?._ref);
+  const imageUrl = getImageUrl(product.image?.[0].asset?._ref);
 
    const messageWhatsApp =
     encodeURIComponent(`Hi, Teetoobeez, I found this product 

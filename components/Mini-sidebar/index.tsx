@@ -5,9 +5,10 @@ interface Props {
 }
 
 const MiniSideBar = ({ onSelectCategory, navItems }: Props) => {
-   const handleSelectCategory = (category: string | null) => {
+   const handleSelectCategory = (category: any) => {
     onSelectCategory(category);
   };
+
   return (
     <div className="hidden md:block h-auto md:w-auto border-r relative px-4">
       <div className="sticky top-4">

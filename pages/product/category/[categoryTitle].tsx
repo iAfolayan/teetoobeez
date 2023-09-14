@@ -51,21 +51,26 @@ const ProductsByCategory = () => {
   
   const formattedCategoryTitle = typeof categoryTitle === 'string' ? categoryTitle : '';
 
-   useEffect(() => {
-     const fetchData = async (catTitle: string) => {
-      setLoading(true)
-       try {
-         if (catTitle) {
-           const productsResult = await getProductsByCategory(catTitle)
-           setCatProducts(productsResult);
+   useEffect(
+     () => {
+       const fetchData = async (catTitle: string) => {
+         setLoading(true)
+         try {
+           if (catTitle) {
+             const productsResult = await getProductsByCategory(catTitle)
+             setCatProducts(productsResult)
+             setLoading(false)
+           }
+         } catch (err) {
+           console.log(err)
+         } finally {
            setLoading(false)
          }
-       } catch (err) {
-         console.log(err)
-       } finally { setLoading(false)}
-     }
-     fetchData(formattedCategoryTitle)
-   }, [categoryTitle, formattedCategoryTitle])
+       }
+       fetchData(formattedCategoryTitle)
+     },
+     [categoryTitle, formattedCategoryTitle]
+  )
 
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 

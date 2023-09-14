@@ -41,8 +41,16 @@ export const urlFor = (source: any) => {
 
 export const getPostById = async ({id}: Props): Promise<Product | null> => {
   const query = `*[ _type == "product" && _id == "${id}" ]{
-    _id, name, category-> {title}, price, image, rating,isLatest
-  }`
+  _id,
+  name,
+  category[]-> {
+    title
+  },
+  price,
+  image,
+  rating,
+  isLatest
+}`
 
   try {
     const results: SanityDocument<Product>[] = await client.fetch(query)
@@ -59,8 +67,18 @@ export const getPostById = async ({id}: Props): Promise<Product | null> => {
   }
 }
 
-export const getProductsByCategory = async (categoryTitle: string): Promise<Product[]> => {
-  const query = `*[_type == "product" && category->title == "${categoryTitle}"] | order(_createdAt desc) {
+export const getProductsByCategory = async (categoryTitle: string | string[]): Promise<Product[]> => {
+  let categoryFilter
+
+  if (Array.isArray(categoryTitle)) {
+    // If categoryTitle is an array, create a filter for multiple categories
+    categoryFilter = `category->title in [${categoryTitle.map((title: any) => `"${title.title}"`).join(" || ")}]`
+  } else {
+    // If categoryTitle is a string, create a filter for a single category
+    categoryFilter = `category[]->title match "${categoryTitle}"`
+  }
+  
+  const query = `*[_type == "product" && ${categoryFilter} && !(_id in path("drafts.**"))] | order(_createdAt desc) {
     _id,
     name,
     image,
@@ -68,9 +86,7 @@ export const getProductsByCategory = async (categoryTitle: string): Promise<Prod
     price,
     rating,
     isLatest,
-    category->{
-      title
-    },
+    'category': category[]->title,
     author->{
       name
     }
@@ -87,21 +103,20 @@ export const getProductsByCategory = async (categoryTitle: string): Promise<Prod
 
 export const getAllProducts = async (): Promise<Product[]> => {
   try {
-    const productsResult = `*[_type == "product"] | order(_createdAt desc) { 
-    _id,
-    name,
-    image,
-    description,
-    price,
-    rating,
-    isLatest,
-    category->{
-      title
-    },
-    author->{
-      name
-    }
-  }`
+    const productsResult = `*[_type == "product"] | order(_createdAt desc) {
+  _id,
+  name,
+  image,
+  description,
+  price,
+  rating,
+  isLatest,
+  'category': category[]->title,
+  author->{
+    name
+  }
+}
+`
     const results: SanityDocument<Product>[] = await client.fetch(productsResult)
     return results
   } catch (error) {
@@ -127,7 +142,7 @@ export const getFeaturedProduct = async (): Promise<Product | null> => {
   name,
   image,
   description,
-  category->{
+  category[]->{
     _id
   }
 }`;

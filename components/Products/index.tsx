@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PostCard from './postCard'
 import MiniSideBar from "@/components/Mini-sidebar";
 import MobileMenu from '../Mini-sidebar/Mobile-menu';
-import {client} from '../../utils/sanity';
+import {client, getAllCategories, getAllProducts} from '../../utils/sanity';
 import Pagination from 'react-js-pagination';
 
 /* Pagination icons */
@@ -28,11 +28,10 @@ interface Image {
 interface Product {
   _id: string
   name: string
-  image: Image[]
+  image: string
   description: string
   price: number
   rating: number
-  isLatest: any
   category: Category
   author: {
     name: string
@@ -56,10 +55,9 @@ const ProductsPage = () => {
     const fetchData = async () => {
       setLoading(true)
     try{
-      const query = `*[_type == "category"]{_id, title }`;
-      const productsResult = await client.fetch(`*[_type == "product"] | order(_createdAt desc){ _id, name, image, description, price, rating, isLatest, category->{title}}`);
+      const productsResult = await getAllProducts()
       
-      const categories = await client.fetch(query)
+      const categories = await getAllCategories()
       
       setCategories(categories)
       setProducts(productsResult)
@@ -80,9 +78,25 @@ const ProductsPage = () => {
     setSelectedCategory(category)
   }
 
-  const filteredProducts = selectedCategory
+  /* const filteredProducts = selectedCategory
     ? products.filter((product: Product) => (product.category.title || product.isLatest) === selectedCategory)
-    : products
+    : products */
+
+     const filteredProducts = selectedCategory
+       ? products.filter((product: Product) => {
+           if (Array.isArray(product.category)) {
+             // Check if any category in the array matches selectedCategory title
+             return product.category.some((cat: any) => cat && cat.includes(selectedCategory))
+           }  else if (
+             typeof product.category === 'string' &&
+             product.category == selectedCategory
+           ) {
+             // Directly compare a string category to selectedCategory
+             return true
+           }
+           return false // Return false for other cases
+         })
+       : products
 
   /* Pagination */
   // const totalPages = Math.ceil(categories.length / ITEMS_PER_PAGE)

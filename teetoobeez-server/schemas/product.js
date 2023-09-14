@@ -51,9 +51,9 @@ export default {
     {
       name: 'category',
       title: 'Category',
-      type: 'reference',
-      to: [{type: 'category'}],
-      validation: (Rule) => Rule.required(),
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'category' }] }],
+      validation: (Rule) => Rule.required().min(1).error('At least one category is required.'),
     },
     {
       name: 'author',

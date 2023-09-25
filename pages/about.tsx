@@ -23,7 +23,7 @@ const AboutPage = () => {
           data-aos-easing="ease-in-sine"
         >
           <span className="font-bold">Teetoobeez</span> was founded by Bolatito Faith OKunlola and
-          Olugbade Elijah Okunlola in 2013 in Nigeria. Growing up in Nigeria, the two founders
+          Olugbade Elijah Okunlola in 2018 in Nigeria. Growing up in Nigeria, the two founders
           devoted themself solely to fashion design. They started creating unique designs and
           selling them online (through select Social Media platforms and their own website) to
           customers across the globe under the brand name
